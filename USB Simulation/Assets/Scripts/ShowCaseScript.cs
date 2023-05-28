@@ -6,14 +6,17 @@ using TMPro;
 
 public class ShowCaseScript : MonoBehaviour
 {
-    public TextMeshProUGUI text;
-    public int page;
-    public int numOfPages;
+    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI imageCaption;
+    int page;
+    int numOfPages;
     int numOfImages;
-    int currentImage; 
-    public Image image; 
-    public Sprite[] images;
-    public AudioSource audioPlayer;
+    int currentImage;
+    [SerializeField] Image image;
+    [SerializeField] Sprite[] images;
+    [SerializeField] string[] imageCaptions; 
+    [SerializeField] AudioSource audioPlayer;
+    [SerializeField] Canvas imageInfo;
 
     private void Start()
     {
@@ -52,11 +55,13 @@ public class ShowCaseScript : MonoBehaviour
         if (currentImage < numOfImages)
         {
             image.sprite = images[currentImage];
+            imageCaption.text = imageCaptions[currentImage];
         }
         else
         {
             currentImage = 0;
             image.sprite = images[currentImage];
+            imageCaption.text = imageCaptions[currentImage];
         }
     }
 
@@ -73,5 +78,10 @@ public class ShowCaseScript : MonoBehaviour
     public void StopRecording()
     {
         audioPlayer.Stop();
+    }
+
+    public void ShowImageInfo()
+    {
+        imageInfo.enabled = !imageInfo.enabled;
     }
 }
