@@ -7,6 +7,7 @@ using TMPro;
 public class ShowCaseScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI pageNumber;
     [SerializeField] TextMeshProUGUI imageCaption;
     int page;
     int numOfPages;
@@ -17,19 +18,20 @@ public class ShowCaseScript : MonoBehaviour
     [SerializeField] string[] imageCaptions; 
     [SerializeField] AudioSource audioPlayer;
     [SerializeField] Canvas imageInfo;
+    [SerializeField] Slider volumeControl;
 
     private void Start()
     {
         page = 1;
-        numOfPages = text.textInfo.pageCount;
-
         currentImage = 0;
         numOfImages = images.Length;
+        imageCaption.text = imageCaptions[currentImage];
     }
 
     private void Update()
     {
-        
+        numOfPages = text.textInfo.pageCount;
+        DisplayPageNumbers();
     }
     public void PageDown()
     {
@@ -83,5 +85,15 @@ public class ShowCaseScript : MonoBehaviour
     public void ShowImageInfo()
     {
         imageInfo.enabled = !imageInfo.enabled;
+    }
+
+    public void ChangeVolume()
+    {
+        audioPlayer.volume = volumeControl.value;
+    }
+
+    public void DisplayPageNumbers()
+    {
+        pageNumber.text = "Page " + page.ToString() + " of " + numOfPages.ToString();
     }
 }
