@@ -32,6 +32,14 @@ public class ShowCaseScript : MonoBehaviour
     {
         numOfPages = text.textInfo.pageCount;
         DisplayPageNumbers();
+
+        if (page > numOfPages)
+        {
+            page = numOfPages;
+            if (page == 0)
+                page = 1;
+            text.pageToDisplay = page;
+        }
     }
     public void PageDown()
     {
@@ -95,5 +103,21 @@ public class ShowCaseScript : MonoBehaviour
     public void DisplayPageNumbers()
     {
         pageNumber.text = "Page " + page.ToString() + " of " + numOfPages.ToString();
+    }
+
+    public void ChangeTextSizeS()
+    {
+        text.fontSize = 24;
+
+    }
+
+    public void ChangeTextSizeM()
+    {
+        text.fontSize = 36;
+    }
+
+    public void ChangeTextSizeL()
+    {
+        text.fontSize = 48;
     }
 }
