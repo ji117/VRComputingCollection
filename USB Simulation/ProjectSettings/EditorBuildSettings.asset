@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Urban Sciences Building.unity
     guid: e494a0d556ac2764da2a052d29682a6e
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 080fd99bb4668b74ea8b215d889648d3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: e588359c4ba0023498802c7a5f17438b,
       type: 2}

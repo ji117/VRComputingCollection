@@ -5,11 +5,15 @@ using UnityEngine;
 public class HandMenuScript : MonoBehaviour
 {
     [SerializeField] ShowCaseScript[] showcaseObjects;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject textSizeMenu;
+    GameObject currentMenu;
     int size;
 
     public void Start()
     {
         size = showcaseObjects.Length;
+        currentMenu = mainMenu;
     }
 
     public void LargeTextSize()
@@ -35,4 +39,28 @@ public class HandMenuScript : MonoBehaviour
             showcaseObjects[i].ChangeTextSizeS();
         }
     }
+
+    public void ShowCurrentMenu()
+    {
+        currentMenu.SetActive(true);
+    }
+
+    public void HideCurrentMenu()
+    {
+        currentMenu.SetActive(false);
+    }
+
+    public void ChangeMenuToMain()
+    {
+        currentMenu.SetActive(false);
+        currentMenu = mainMenu;
+        currentMenu.SetActive(true);
+    }
+    public void ChangeMenuToTextSize()
+    {
+        currentMenu.SetActive(false);
+        currentMenu = textSizeMenu;
+        currentMenu.SetActive(true);
+    }
+
 }

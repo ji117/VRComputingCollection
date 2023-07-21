@@ -9,16 +9,23 @@ public class ShowCaseScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] TextMeshProUGUI pageNumber;
     [SerializeField] TextMeshProUGUI imageCaption;
+    [SerializeField] TextMeshProUGUI clipLength;
+    [SerializeField] TextMeshProUGUI clipProgress;
     int page;
     int numOfPages;
     int numOfImages;
     int currentImage;
+    float playBackProgress;
+    float audioClipLength;
+    float playBackPercentage;
     [SerializeField] Image image;
     [SerializeField] Sprite[] images;
     [SerializeField] string[] imageCaptions; 
     [SerializeField] AudioSource audioPlayer;
     [SerializeField] Canvas imageInfo;
     [SerializeField] Slider volumeControl;
+    [SerializeField] Slider progressBar; 
+    AudioClip audioClip;
 
     private void Start()
     {
@@ -26,6 +33,15 @@ public class ShowCaseScript : MonoBehaviour
         currentImage = 0;
         numOfImages = images.Length;
         imageCaption.text = imageCaptions[currentImage];
+        audioClip = audioPlayer.clip;
+        audioClipLength = audioClip.length;
+
+        int minutes;
+        int seconds;
+        minutes = Mathf.FloorToInt(audioClipLength / 60);
+        seconds = Mathf.RoundToInt(audioClipLength % 60);
+        clipLength.text = minutes.ToString() + ":" + seconds.ToString();
+
     }
 
     private void Update()
@@ -40,6 +56,8 @@ public class ShowCaseScript : MonoBehaviour
                 page = 1;
             text.pageToDisplay = page;
         }
+
+        ProgressBar();
     }
     public void PageDown()
     {
@@ -119,5 +137,24 @@ public class ShowCaseScript : MonoBehaviour
     public void ChangeTextSizeL()
     {
         text.fontSize = 48;
+    }
+
+    public void ProgressBar()
+    {
+        playBackProgress = audioPlayer.time;
+        playBackPercentage = (playBackProgress / audioClipLength) * 100;
+        progressBar.value = playBackPercentage;
+
+        int minutes;
+        int seconds;
+        minutes = Mathf.FloorToInt(playBackProgress / 60);
+        seconds = Mathf.RoundToInt(playBackProgress % 60);
+        clipProgress.text = minutes.ToString() + ":" + seconds.ToString();
+    }
+
+    public void ProgressUpdate()
+    {
+        playBackPercentage = progressBar.value;
+        audioPlayer.time = (playBackPercentage / 100) * audioClipLength;
     }
 }
