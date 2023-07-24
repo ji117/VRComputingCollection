@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandMenuScript : MonoBehaviour
 {
     [SerializeField] ShowCaseScript[] showcaseObjects;
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject textSizeMenu;
+    [SerializeField] GameObject helpMenu;
     GameObject currentMenu;
     int size;
 
@@ -61,6 +63,18 @@ public class HandMenuScript : MonoBehaviour
         currentMenu.SetActive(false);
         currentMenu = textSizeMenu;
         currentMenu.SetActive(true);
+    }
+
+    public void ChangeMenuToHelp()
+    {
+        currentMenu.SetActive(false);
+        currentMenu = helpMenu;
+        currentMenu.SetActive(true);
+    }
+
+    public void BackToStart()
+    {
+        SceneManager.LoadScene(1);
     }
 
 }
