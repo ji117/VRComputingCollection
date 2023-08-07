@@ -6,6 +6,7 @@ using TMPro;
 
 public class ShowCaseScript : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI title; 
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] TextMeshProUGUI pageNumber;
     [SerializeField] TextMeshProUGUI imageCaption;
@@ -35,6 +36,8 @@ public class ShowCaseScript : MonoBehaviour
         imageCaption.text = imageCaptions[currentImage];
         audioClip = audioPlayer.clip;
         audioClipLength = audioClip.length;
+        title.text = this.name;
+        text.text = text.text.Replace("\r", "");
 
         int minutes;
         int seconds;
