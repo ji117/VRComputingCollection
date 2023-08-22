@@ -11,6 +11,7 @@ public class HandMenuScript : MonoBehaviour
     [SerializeField] GameObject helpMenu;
     [SerializeField] GameObject exhibitMenu;
     [SerializeField] GameObject exhibitMenu2;
+    [SerializeField] GameObject confirmMenu;
     [SerializeField] GameObject group1;
     [SerializeField] GameObject group2;
     [SerializeField] GameObject group3;
@@ -35,8 +36,7 @@ public class HandMenuScript : MonoBehaviour
     {
         for (int i = 0; i < size; i++)
         {
-            if (showcaseObjects[i].enabled == true)
-                showcaseObjects[i].ChangeTextSizeL();
+            showcaseObjects[i].ChangeTextSizeL();
         }
     }
 
@@ -44,8 +44,7 @@ public class HandMenuScript : MonoBehaviour
     {
         for (int i = 0; i < size; i++)
         {
-            if (showcaseObjects[i].enabled == true)
-                showcaseObjects[i].ChangeTextSizeM();
+            showcaseObjects[i].ChangeTextSizeM();
         }
     }
 
@@ -53,7 +52,6 @@ public class HandMenuScript : MonoBehaviour
     {
         for (int i = 0; i < size; i++)
         {
-            if (showcaseObjects[i].enabled == true)
             showcaseObjects[i].ChangeTextSizeS();
         }
     }
@@ -99,6 +97,13 @@ public class HandMenuScript : MonoBehaviour
     {
         currentMenu.SetActive(false);
         currentMenu = exhibitMenu2;
+        currentMenu.SetActive(true);
+    }
+
+    public void ChangeMenuToConfirm()
+    {
+        currentMenu.SetActive(false);
+        currentMenu = confirmMenu;
         currentMenu.SetActive(true);
     }
 
@@ -168,7 +173,7 @@ public class HandMenuScript : MonoBehaviour
 
     public void BackToStart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
 }

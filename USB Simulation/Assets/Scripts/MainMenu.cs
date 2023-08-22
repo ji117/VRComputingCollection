@@ -6,9 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] GameObject main;
+    [SerializeField] GameObject info; 
     public void StartApp()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+
+    public void ChangeToInfo()
+    {
+        main.SetActive(false);
+        info.SetActive(true);
     }
 
     public void ExitApp()
